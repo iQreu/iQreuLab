@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="356" height="96" viewBox="0 0 178 48" role="img" aria-label="iQreu Lab">
+  <g transform="translate(6,6) scale(1.125)">
+    <rect width="32" height="32" rx="7" fill="#16130f"></rect>
+    <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 8 L5.5 16 L11 24"></path>
+      <path d="M21 8 L26.5 16 L21 24"></path>
+    </g>
+    <rect x="12.4" y="11.4" width="7.2" height="2.7" rx="1.35" fill="#F26A2C"></rect>
+    <rect x="12.4" y="14.65" width="7.2" height="2.7" rx="1.35" fill="#ffffff" opacity=".8"></rect>
+    <rect x="12.4" y="17.9" width="7.2" height="2.7" rx="1.35" fill="#ffffff" opacity=".55"></rect>
+  </g>
+  <text x="56" y="32" font-family="&#39;Space Grotesk&#39;,&#39;Segoe UI&#39;,system-ui,sans-serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#16130f">iQreu <tspan fill="#F26A2C">Lab</tspan></text>
+</svg>

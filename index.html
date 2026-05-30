@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark" data-font="a" data-cards="outline" data-grid="on" data-motion="on">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>iQreu Lab — druk 3D · skan 3D · web · aplikacje</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316130f'/%3E%3Cpath d='M11 8 L5.5 16 L11 24M21 8 L26.5 16 L21 24' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Crect x='12.4' y='11.4' width='7.2' height='2.7' rx='1.35' fill='%23F26A2C'/%3E%3Crect x='12.4' y='14.65' width='7.2' height='2.7' rx='1.35' fill='%23fff' opacity='.8'/%3E%3Crect x='12.4' y='17.9' width='7.2' height='2.7' rx='1.35' fill='%23fff' opacity='.55'/%3E%3C/svg%3E" />
+<meta name="description" content="iQreu Lab — studio łączące druk i skan 3D z tworzeniem stron, aplikacji i personalizowanych przedmiotów DIY." />
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("iqt-theme");
+      if (!t) t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) { document.documentElement.setAttribute("data-theme", "dark"); }
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&family=Space+Mono:wght@400;700&family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="iQreu Lab">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path class="brk" d="M11 8 L5.5 16 L11 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path class="brk" d="M21 8 L26.5 16 L21 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect class="ly l1" x="12.4" y="11.4" width="7.2" height="2.7" rx="1.35"/><rect class="ly l2" x="12.4" y="14.65" width="7.2" height="2.7" rx="1.35"/><rect class="ly l3" x="12.4" y="17.9" width="7.2" height="2.7" rx="1.35"/></svg></span>
+      <span>iQreu <b>Lab</b></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services" data-i18n="nav.services">Usługi</a>
+      <a href="#work" data-i18n="nav.work">Realizacje</a>
+      <a href="#process" data-i18n="nav.process">Proces</a>
+      <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="toolbtn lang-toggle" aria-label="Język / Language"><span data-lang-label>PL <span style="opacity:.45">/ EN</span></span></button>
+      <button class="toolbtn theme-toggle" aria-label="Motyw jasny / ciemny" aria-pressed="true">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      </button>
+      <a class="btn desktop-cta" href="#contact" data-i18n="nav.cta">Zacznijmy projekt</a>
+      <button class="toolbtn menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mobile-menu">
+  <button class="close" aria-label="Zamknij"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#services" data-i18n="nav.services">Usługi</a>
+  <a href="#work" data-i18n="nav.work">Realizacje</a>
+  <a href="#process" data-i18n="nav.process">Proces</a>
+  <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+</div>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero grid-bg">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal" data-i18n="hero.eyebrow">Studio 3D · Web · Making</span>
+      <h1 class="reveal" data-d="1">
+        <span class="line" data-i18n="hero.t1">Tworzę rzeczy —</span>
+        <span class="line"><em data-i18n="hero.t2">warstwa po warstwie, linia po linii.</em></span>
+      </h1>
+      <p class="hero-lead reveal" data-d="2" data-i18n="hero.lead">iQreu Lab łączy druk i skan 3D z tworzeniem stron, aplikacji i personalizowanych przedmiotów DIY. Jeden warsztat — od pomysłu, przez prototyp, po wdrożenie.</p>
+      <div class="hero-cta reveal" data-d="3">
+        <a class="btn" href="#contact"><span data-i18n="hero.cta1">Zacznijmy projekt</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost" href="#work" data-i18n="hero.cta2">Zobacz realizacje</a>
+      </div>
+      <div class="hero-meta reveal" data-d="4">
+        <div class="stat"><div class="n"><b data-i18n="hero.s1n">09</b></div><div class="l" data-i18n="hero.s1l">usług w jednym studiu</div></div>
+        <div class="stat"><div class="n" data-i18n="hero.s2n">2 światy</div><div class="l" data-i18n="hero.s2l">fizyczny + cyfrowy</div></div>
+        <div class="stat"><div class="n" data-i18n="hero.s3n">PL / EN</div><div class="l" data-i18n="hero.s3l">mówimy w obu</div></div>
+      </div>
+    </div>
+    <div class="hero-viz reveal" data-d="2" aria-hidden="true">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <span class="tag t1 mono">build_platform.iqt</span>
+      <div class="layers"><div class="obj"></div></div>
+      <span class="scan"></span>
+      <span class="tag t2 mono">layer 011 / 011 · 100%</span>
+    </div>
+  </div>
+</section>
+
+<!-- capabilities strip -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span class="item" data-i18n="strip.print">Druk 3D</span><span class="item" data-i18n="strip.scan">Skan 3D</span><span class="item" data-i18n="strip.laser">Grawer laserowy</span><span class="item">Frontend</span><span class="item">Backend</span><span class="item" data-i18n="strip.web">Strony WWW</span><span class="item" data-i18n="strip.app">Aplikacje mobilne</span><span class="item" data-i18n="strip.ai">Technologie AI</span><span class="item" data-i18n="strip.diy">DIY personalizowane</span><span class="item" data-i18n="strip.proto">Prototypowanie</span>
+    <span class="item" data-i18n="strip.print">Druk 3D</span><span class="item" data-i18n="strip.scan">Skan 3D</span><span class="item" data-i18n="strip.laser">Grawer laserowy</span><span class="item">Frontend</span><span class="item">Backend</span><span class="item" data-i18n="strip.web">Strony WWW</span><span class="item" data-i18n="strip.app">Aplikacje mobilne</span><span class="item" data-i18n="strip.ai">Technologie AI</span><span class="item" data-i18n="strip.diy">DIY personalizowane</span><span class="item" data-i18n="strip.proto">Prototypowanie</span>
+  </div>
+</div>
+
+<!-- ============================ SERVICES ============================ -->
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="svc.eyebrow">Usługi / 01</span>
+      <h2 data-i18n="svc.title">Od fizycznego obiektu po wdrożony produkt.</h2>
+      <p data-i18n="svc.desc">Dwie dziedziny rzemiosła pod jednym dachem. Wybierz jedną usługę albo połącz je w jeden proces end-to-end.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc-card reveal" data-d="1">
+        <span class="num idx">01</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg></div>
+        <h3 data-i18n="svc.1t">Druk 3D</h3>
+        <p data-i18n="svc.1d">Wydruki w technologii FDM z Twojego lub mojego modelu — prototypy, części funkcjonalne, gadżety i małe serie.</p>
+        <div class="tags"><span>FDM</span><span>PLA</span><span>PETG</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="2">
+        <span class="num idx">02</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="M9 10h6l-3 4z"/><path d="M3 20h18"/><path d="M8 20l1.5-3M16 20l-1.5-3M12 17v3"/></svg></div>
+        <h3 data-i18n="svc.laserT">Grawer laserowy</h3>
+        <p data-i18n="svc.laserD">Grawerowanie i znakowanie laserem diodowym — drewno, sklejka, skóra, akryl. Logo, napisy, personalizacja i wzory.</p>
+        <div class="tags"><span>LASER</span><span>DIODA</span><span>GRAWER</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="3">
+        <span class="num idx">03</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3 data-i18n="svc.2t">Skan 3D</h3>
+        <p data-i18n="svc.2d">Zamieniam realne obiekty w dokładne siatki 3D do reprodukcji, renowacji lub edycji.</p>
+        <div class="tags"><span>MESH</span><span>STL</span><span>REVERSE-ENG</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="1">
+        <span class="num idx">04</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 7l-2 10"/></svg></div>
+        <h3 data-i18n="svc.3t">Frontend</h3>
+        <p data-i18n="svc.3d">Szybkie, dostępne i responsywne interfejsy dopasowane do Twojej marki co do piksela.</p>
+        <div class="tags"><span>REACT</span><span>CSS</span><span>A11Y</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="2">
+        <span class="num idx">05</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3 data-i18n="svc.4t">Backend</h3>
+        <p data-i18n="svc.4d">API, bazy danych i integracje — niezawodny silnik działający pod powierzchnią.</p>
+        <div class="tags"><span>API</span><span>DB</span><span>AUTH</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="3">
+        <span class="num idx">06</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M7 21h10"/></svg></div>
+        <h3 data-i18n="svc.5t">Strony WWW</h3>
+        <p data-i18n="svc.5d">Landing page, portfolia i strony firmowe — zaprojektowane, zbudowane i wdrożone.</p>
+        <div class="tags"><span>SEO</span><span>RWD</span><span>CMS</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="1">
+        <span class="num idx">07</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3 data-i18n="svc.6t">Aplikacje mobilne</h3>
+        <p data-i18n="svc.6d">Aplikacje wieloplatformowe na Androida i iOS, od koncepcji po sklep.</p>
+        <div class="tags"><span>ANDROID</span><span>iOS</span><span>PWA</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="2">
+        <span class="num idx">08</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18 9l-4.3 1.4L12 15l-1.7-4.6L6 9l4.3-1.4z"/><path d="M18.5 14.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></div>
+        <h3 data-i18n="svc.aiT">Technologie AI</h3>
+        <p data-i18n="svc.aiD">Wykorzystuję nowoczesne narzędzia AI w całym procesie — generowanie koncepcji i grafik, wspomaganie kodu, optymalizację modeli 3D i automatyzację powtarzalnych zadań.</p>
+        <div class="tags"><span>GEN-AI</span><span>AUTOMATYZACJA</span><span>COPILOT</span></div>
+      </article>
+      <article class="svc-card reveal" data-d="3">
+        <span class="num idx">09</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5 5.6.5-4.2 3.7 1.3 5.5L12 19l-5.1 2.7 1.3-5.5L4 12.5l5.6-.5z"/></svg></div>
+        <h3 data-i18n="svc.7t">DIY personalizowane</h3>
+        <p data-i18n="svc.7d">Spersonalizowane przedmioty na zamówienie — gadżety, prezenty i unikatowe sztuki.</p>
+        <div class="tags"><span>CUSTOM</span><span>1-OF-1</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WORK / LAUNCH ============================ -->
+<section class="section-pad" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="work.eyebrow">Realizacje / 02</span>
+      <h2 data-i18n="work.title">Studio właśnie startuje.</h2>
+      <p data-i18n="work.desc">To miejsce na realizacje — i jest jeszcze puste, bo dopiero zaczynam. Zamiast podrasowanych placeholderów wolę być szczery: szukam pierwszych projektów, w które włożę pełne zaangażowanie.</p>
+    </div>
+
+    <div class="launch reveal">
+      <div class="launch-main">
+        <span class="launch-status mono"><i></i><span data-i18n="launch.badge">PRZYJMUJĘ PIERWSZE ZLECENIA</span></span>
+        <h3 data-i18n="launch.h">Bądź jednym z pierwszych klientów iQreu Lab.</h3>
+        <p data-i18n="launch.p">Pierwsze projekty traktuję wyjątkowo: niższa cena na start, więcej uwagi i pełna transparentność. W zamian Twoja realizacja — za Twoją zgodą — trafi tutaj jako jedna z pierwszych w portfolio.</p>
+        <ul class="launch-perks">
+          <li data-i18n="launch.b1">Specjalna cena dla pierwszych zleceń</li>
+          <li data-i18n="launch.b2">Bezpośredni kontakt i szybkie odpowiedzi</li>
+          <li data-i18n="launch.b3">Współtworzysz pierwsze portfolio studia</li>
+          <li data-i18n="launch.b4">Pełna transparentność procesu i wyceny</li>
+        </ul>
+        <div class="hero-cta">
+          <a class="btn" href="#contact"><span data-i18n="launch.cta">Odezwij się jako pierwszy</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <aside class="launch-slots" aria-hidden="true">
+        <span class="launch-slots-label mono" data-i18n="launch.soon">Wkrótce w portfolio</span>
+        <div class="slot"><span class="slot-tag mono" data-i18n="launch.s1">Druk / skan 3D</span><span class="slot-q">01</span></div>
+        <div class="slot"><span class="slot-tag mono" data-i18n="launch.s2">Strona / aplikacja</span><span class="slot-q">02</span></div>
+        <div class="slot"><span class="slot-tag mono" data-i18n="launch.s3">Projekt DIY</span><span class="slot-q">03</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROCESS ============================ -->
+<section class="section-pad" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="proc.eyebrow">Proces / 03</span>
+      <h2 data-i18n="proc.title">Jak pracujemy.</h2>
+      <p data-i18n="proc.desc">Jasna ścieżka od pierwszej wiadomości do gotowego efektu — fizycznego lub cyfrowego.</p>
+    </div>
+    <div class="proc reveal">
+      <div class="step"><div class="n">01</div><div class="dot"></div><h3 data-i18n="p1.t">Brief i wycena</h3><p data-i18n="p1.d">Rozmawiamy o pomyśle, zakresie i budżecie. Dostajesz przejrzystą wycenę i harmonogram.</p></div>
+      <div class="step"><div class="n">02</div><div class="dot"></div><h3 data-i18n="p2.t">Projekt i prototyp</h3><p data-i18n="p2.d">Koncept, model lub makieta. Testujemy podejście, zanim ruszymy z pełną realizacją.</p></div>
+      <div class="step"><div class="n">03</div><div class="dot"></div><h3 data-i18n="p3.t">Realizacja</h3><p data-i18n="p3.d">Druk, skan lub kod — z dbałością o detale i regularnymi aktualizacjami.</p></div>
+      <div class="step"><div class="n">04</div><div class="dot"></div><h3 data-i18n="p4.t">Wdrożenie i wsparcie</h3><p data-i18n="p4.d">Przekazanie, wdrożenie i wsparcie, które utrzyma wszystko w ruchu.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="section-pad" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-aside reveal">
+      <span class="eyebrow" data-i18n="contact.eyebrow">Kontakt / 04</span>
+      <h2 data-i18n="contact.title">Masz pomysł? Pogadajmy.</h2>
+      <p data-i18n="contact.desc">Napisz, co chcesz zbudować — fizycznie, cyfrowo lub jedno i drugie. Zwykle odpowiadam w ciągu doby.</p>
+      <div class="contact-links">
+        <a href="mailto:robnar72@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="lbl" data-i18n="c.l1lbl">Email</span><span class="val" data-i18n="c.l1val">robnar72@gmail.com</span></a>
+        <a href="https://github.com/iQreu" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span><span class="lbl" data-i18n="c.l2lbl">GitHub</span><span class="val" data-i18n="c.l2val">github.com/iQreu</span></a>
+        <a href="#"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="lbl" data-i18n="c.l3lbl">Gdzie</span><span class="val" data-i18n="c.l3val">Polska / zdalnie na całym świecie</span></a>
+      </div>
+    </div>
+    <div class="form reveal" data-d="1">
+      <form novalidate>
+        <div class="two">
+          <div class="field" data-field="name">
+            <label data-i18n="form.name">Imię</label>
+            <input type="text" name="name" data-i18n-ph="form.namePh" placeholder="Twoje imię" />
+            <div class="msg" data-i18n="form.errName">Podaj imię</div>
+          </div>
+          <div class="field" data-field="email">
+            <label data-i18n="form.email">Email</label>
+            <input type="email" name="email" data-i18n-ph="form.emailPh" placeholder="ty@email.com" />
+            <div class="msg" data-i18n="form.errEmail">Podaj poprawny adres e-mail</div>
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="form.type">Typ projektu</label>
+          <select name="type">
+            <option value="" data-i18n="form.optChoose">Wybierz…</option>
+            <option data-i18n="form.opt1">Druk / skan 3D</option>
+            <option data-i18n="form.optLaser">Grawer laserowy</option>
+            <option data-i18n="form.opt2">Strona WWW</option>
+            <option data-i18n="form.opt3">Aplikacja mobilna / web</option>
+            <option data-i18n="form.opt4">Personalizowany przedmiot DIY</option>
+            <option data-i18n="form.opt5">Coś innego</option>
+          </select>
+        </div>
+        <div class="field" data-field="message">
+          <label data-i18n="form.msg">Wiadomość</label>
+          <textarea name="message" data-i18n-ph="form.msgPh" placeholder="Opisz projekt w kilku zdaniach…"></textarea>
+          <div class="msg" data-i18n="form.errMsg">Napisz coś o projekcie</div>
+        </div>
+        <button class="btn" type="submit"><span data-i18n="form.submit">Wyślij zapytanie</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+      <div class="form-ok">
+        <div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+        <h3 data-i18n="form.okTitle">Dzięki — wiadomość gotowa!</h3>
+        <p data-i18n="form.okDesc">Jeśli otworzył się Twój program pocztowy, kliknij „wyślij", aby dokończyć. Odezwę się najszybciej, jak to możliwe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="#top"><span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path class="brk" d="M11 8 L5.5 16 L11 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path class="brk" d="M21 8 L26.5 16 L21 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect class="ly l1" x="12.4" y="11.4" width="7.2" height="2.7" rx="1.35"/><rect class="ly l2" x="12.4" y="14.65" width="7.2" height="2.7" rx="1.35"/><rect class="ly l3" x="12.4" y="17.9" width="7.2" height="2.7" rx="1.35"/></svg></span><span>iQreu <b>Lab</b></span></a>
+        <p class="footer-tag" data-i18n="footer.tag">Precyzja inżynierska spotyka cyfrowe rzemiosło. Budowane warstwa po warstwie, linia po linii.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 data-i18n="footer.c1">Studio</h4>
+          <a href="#services" data-i18n="nav.services">Usługi</a>
+          <a href="#work" data-i18n="nav.work">Realizacje</a>
+          <a href="#process" data-i18n="nav.process">Proces</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.c2">Kontakt</h4>
+          <a href="mailto:robnar72@gmail.com">Email</a>
+          <a href="https://github.com/iQreu" target="_blank" rel="noopener">GitHub</a>
+            </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 iQreu Lab. <span data-i18n="footer.rights">Wszelkie prawa zastrzeżone.</span></span>
+      <span data-i18n="footer.built">Zbudowano pod GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+
+<!-- scripts -->
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
