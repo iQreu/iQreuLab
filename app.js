@@ -18,7 +18,7 @@
         visitor's email app with a pre-filled message to you.
      2) FALLBACK_EMAIL: your address used by the mailto fallback.
      ============================================================ */
-  const FORM_ENDPOINT = "";
+  const FORM_ENDPOINT = "https://formspree.io/f/mbdbeger";
   const FALLBACK_EMAIL = "robnar72@gmail.com";
 
   /* ---------- Theme ---------- */
