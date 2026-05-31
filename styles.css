@@ -475,13 +475,44 @@ section { position: relative; }
   .menu-btn { display: inline-flex; }
   .nav .btn.desktop-cta { display: none; }
   .svc-grid { grid-template-columns: 1fr; }
-  .proc { grid-template-columns: 1fr; }
-  .step { border-right: none; border-bottom: 1px solid var(--line); }
+
+  /* ---- Process (03): vertical timeline on mobile ---- */
+  .proc { grid-template-columns: 1fr; border-radius: var(--radius); }
+  .step {
+    border-right: none; border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: 42px 1fr; column-gap: 16px; row-gap: 6px;
+    align-items: start; padding: 22px 22px 24px; position: relative;
+  }
   .step:last-child { border-bottom: none; }
+  .step .n {
+    grid-column: 1; grid-row: 1;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    display: grid; place-items: center; font-size: 0.82rem;
+    background: var(--bg); position: relative; z-index: 1;
+  }
+  .step .dot { display: none; }
+  .step h3 { grid-column: 2; grid-row: 1; align-self: center; margin: 0; }
+  .step p { grid-column: 2; grid-row: 2; }
+  /* dashed connector down the left rail, centred under the circle */
+  .step:not(:last-child)::after {
+    content: ""; position: absolute; left: 43px; top: 66px; bottom: -1px; width: 2px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(180deg, var(--line) 0 5px, transparent 5px 10px);
+  }
+
   .posts { grid-template-columns: 1fr; }
   .work.w-7, .work.w-5, .work.w-6, .work.w-4, .work.w-8 { grid-column: span 12; }
-  .launch-perks { grid-template-columns: 1fr; }
-  .launch-slots { flex-direction: column; }
+
+  /* ---- Launch (02): tighter, no overflow on mobile ---- */
+  .launch-main { padding: 26px 22px 28px; }
+  .launch-status { font-size: 0.64rem; letter-spacing: 0.08em; flex-wrap: wrap; }
+  .launch-main h3 { font-size: 1.5rem; }
+  .launch-perks { grid-template-columns: 1fr; gap: 11px; margin: 22px 0 26px; }
+  .launch-slots { flex-direction: column; gap: 10px; }
+  .slot { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; padding: 0 18px; }
+  .slot-q { font-size: 1.15rem; }
+
   .two { grid-template-columns: 1fr; }
   .hero-meta { gap: 18px 26px; }
   /* mobile menu */
