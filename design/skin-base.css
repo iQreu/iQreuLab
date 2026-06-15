@@ -1,0 +1,57 @@
+/* skin-base.css — wspólna baza dla wszystkich kierunków.
+   Każda skórka MUSI zdefiniować kanoniczne zmienne dla [data-theme="dark"] i [data-theme="light"]:
+   --bg --bg-2 --surface --text --head --muted --line --accent --accent-2 --on-accent --ph
+   oraz --font-sans --font-display. Layout (hero/zakres/realizacje) pisze każda skórka sama. */
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+button{font-family:inherit;cursor:pointer;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 44px;position:relative;}
+.display{font-family:var(--font-display);}
+
+/* placeholdery */
+.ph{position:relative;overflow:hidden;background:var(--ph);
+  background-image:repeating-linear-gradient(135deg,transparent 0 15px,color-mix(in srgb,var(--text) 6%,transparent) 15px 16px);
+  display:flex;align-items:flex-end;min-height:120px;}
+.ph > span{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--text) 45%,transparent);padding:12px 14px;position:relative;z-index:1;}
+
+/* chrome: przełączniki w prawym górnym rogu */
+.chrome{position:fixed;top:16px;right:18px;z-index:120;display:flex;gap:8px;align-items:center;}
+.chrome .lang{display:flex;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(8px);}
+.chrome .lang button{background:transparent;border:0;color:var(--muted);padding:7px 12px;font-size:12px;font-weight:700;letter-spacing:.04em;transition:.25s;}
+.chrome .lang button.on{background:var(--accent);color:var(--on-accent);}
+.chrome .mode{width:40px;height:40px;padding:0;display:inline-grid;place-items:center;border:1px solid var(--line);border-radius:50%;
+  background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(8px);color:var(--text);transition:.25s;}
+.chrome .mode:hover{border-color:var(--accent);color:var(--accent);}
+.chrome .mode svg{width:18px;height:18px;display:block;}
+
+/* sekcja bloga — widok pojedynczego wpisu (spójna we wszystkich skórkach) */
+.post{background:var(--bg-2);}
+.post-wrap{max-width:880px;margin:0 auto;padding:0 44px;}
+.post .head{text-align:center;padding-bottom:14px;}
+.post .cat{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent);}
+.post .ttl{font-family:var(--font-display);font-size:clamp(30px,4.2vw,52px);line-height:1.06;color:var(--head);margin:14px auto 0;max-width:20ch;}
+.post .meta{color:var(--muted);font-size:14px;margin-top:14px;letter-spacing:.04em;}
+.post .cover{margin:38px 0;aspect-ratio:16/7;border:1px solid var(--line);}
+.post .cover.ph{min-height:0;}
+.post .body p{color:var(--text);font-size:18px;line-height:1.75;margin-bottom:18px;max-width:64ch;margin-left:auto;margin-right:auto;}
+.post .body p:first-child::first-letter{font-family:var(--font-display);font-size:3.4em;line-height:.8;float:left;padding:6px 12px 0 0;color:var(--accent);}
+.post .more{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:34px;padding-top:24px;border-top:1px solid var(--line);}
+.post .more .other{display:flex;gap:18px;flex-wrap:wrap;}
+.post .more a{font-size:14px;color:var(--muted);}
+.post .more a:hover{color:var(--accent);}
+
+/* drobne narzędzia layoutu współdzielone */
+.sec{padding:104px 0;}
+.eyebrow{font-size:12px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--accent);}
+.muted{color:var(--muted);}
+
+@media(max-width:720px){
+  .wrap,.post-wrap{padding-left:22px;padding-right:22px;}
+  .sec{padding:72px 0;}
+  .chrome{top:auto;bottom:14px;right:14px;}
+}

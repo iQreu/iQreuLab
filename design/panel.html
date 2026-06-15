@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pl" data-default-mode="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lemako — Panel właściciela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet" />
+<style>
+:root{ --bg:#14171b; --panel:#1a1e23; --panel-2:#20252b; --line:#2c333b; --line-2:#3a424c;
+  --text:#dde3ea; --head:#f3f6fa; --muted:#8a94a0; --faint:#5c6570; --accent:#c8a868; --accent-2:#e0c692;
+  --danger:#e07a5f; --ok:#5fb98e; --sans:"Hanken Grotesk",system-ui,sans-serif; --serif:"Cormorant Garamond",serif; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;-webkit-font-smoothing:antialiased;height:100vh;overflow:hidden;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+.app{display:grid;grid-template-rows:auto 1fr;height:100vh;}
+
+/* topbar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 22px;height:62px;background:var(--panel);border-bottom:1px solid var(--line);}
+.top .brand{display:flex;align-items:center;gap:12px;}
+.top .brand img{height:26px;}
+.top .brand .t{font-family:var(--serif);font-size:20px;color:var(--head);}
+.top .brand .s{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border-left:1px solid var(--line-2);padding-left:12px;}
+.top .tools{display:flex;align-items:center;gap:10px;}
+.lang{display:flex;border:1px solid var(--line-2);border-radius:30px;overflow:hidden;}
+.lang button{background:transparent;border:0;color:var(--muted);padding:7px 13px;font-size:12px;font-weight:700;letter-spacing:.04em;}
+.lang button.on{background:var(--accent);color:#1a140a;}
+.sel{background:var(--panel-2);border:1px solid var(--line-2);color:var(--text);border-radius:6px;padding:8px 12px;font-size:13px;font-family:inherit;}
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-2);background:var(--panel-2);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;font-weight:600;transition:.2s;}
+.btn:hover{border-color:var(--accent);color:var(--accent);}
+.btn.danger:hover{border-color:var(--danger);color:var(--danger);}
+
+/* body grid */
+.main{display:grid;grid-template-columns:230px 1fr;min-height:0;}
+.rail{background:var(--panel);border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;}
+.rail .nav{display:flex;flex-direction:column;gap:2px;}
+.rail .nav button{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:transparent;border:0;color:var(--muted);padding:11px 13px;border-radius:8px;font-size:14px;font-weight:600;transition:.18s;}
+.rail .nav button:hover{background:var(--panel-2);color:var(--text);}
+.rail .nav button.on{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);}
+.rail .nav .ic{width:18px;height:18px;flex-shrink:0;}
+.rail .foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--faint);line-height:1.5;}
+
+.content{overflow-y:auto;padding:30px 36px 80px;}
+.content .head{margin-bottom:24px;}
+.content .head h1{font-family:var(--serif);font-size:32px;color:var(--head);font-weight:600;}
+.content .head p{color:var(--muted);font-size:14px;margin-top:4px;}
+.maxw{max-width:760px;}
+
+.field{margin-bottom:18px;}
+.field label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;font-weight:600;}
+.field input,.field textarea,.field select{width:100%;background:var(--panel);border:1px solid var(--line-2);color:var(--text);
+  padding:11px 13px;border-radius:7px;font-family:inherit;font-size:14px;transition:border-color .2s;}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent);}
+.field textarea{min-height:90px;resize:vertical;line-height:1.55;}
+.field .hint{font-size:12px;color:var(--faint);margin-top:6px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:14px;}
+.card .ch{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.card .ch .n{font-family:var(--serif);font-size:20px;color:var(--head);}
+.card .ch .badge{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);padding:4px 9px;border-radius:20px;}
+.iconbtn{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:7px;background:transparent;color:var(--muted);transition:.2s;flex-shrink:0;}
+.iconbtn:hover{color:var(--accent);border-color:var(--accent);}
+.iconbtn.danger:hover{color:var(--danger);border-color:var(--danger);}
+.add{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1px dashed var(--line-2);background:transparent;color:var(--text);padding:15px;border-radius:10px;font-size:14px;font-weight:600;transition:.2s;}
+.add:hover{border-color:var(--accent);color:var(--accent);}
+.section-label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:26px 0 14px;}
+.section-label:first-child{margin-top:0;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ok);color:#0e1a13;padding:11px 20px;border-radius:8px;
+  font-size:14px;font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-2px);}
+
+@media(max-width:760px){
+  .main{grid-template-columns:1fr;}
+  .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px;}
+  .rail .nav{flex-direction:row;}
+  .rail .foot{display:none;}
+  .row2{grid-template-columns:1fr;}
+  .top .brand .s{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="brand">
+      <img data-logo data-src-dark="assets/logo-white.png" data-src-light="assets/logo-white.png" alt="Lemako" />
+      <span class="t">Lemako CMS</span><span class="s">Panel właściciela</span>
+    </div>
+    <div class="tools">
+      <span style="font-size:12px;color:var(--faint);">Edytujesz:</span>
+      <div class="lang" id="editLang"><button data-l="pl" class="on">PL</button><button data-l="en">EN</button></div>
+      <select class="sel" id="openSel" title="Otwórz podgląd">
+        <option value="">Otwórz podgląd…</option>
+        <optgroup label="Premium">
+          <option value="Styl-Onyks.html">Onyks Premium</option>
+          <option value="Styl-Smaragd.html">Smaragd</option>
+          <option value="Styl-Platyna.html">Platyna</option>
+        </optgroup>
+        <optgroup label="Retro / vintage">
+          <option value="Styl-Retro74.html">Retro '74</option>
+          <option value="Styl-MidCentury.html">Mid-century</option>
+          <option value="Styl-Bauhaus.html">Bauhaus</option>
+        </optgroup>
+        <optgroup label="Nowe kierunki">
+          <option value="Styl-ArtDeco.html">Art déco</option>
+          <option value="Styl-Industrial.html">Industrial loft</option>
+          <option value="Styl-Glamour.html">Glamour boutique</option>
+          <option value="Styl-Brutalist.html">Brutalist editorial</option>
+        </optgroup>
+        <optgroup label="Przegląd">
+          <option value="index.html">Galeria kierunków</option>
+        </optgroup>
+      </select>
+      <button class="btn danger" id="resetBtn">Przywróć domyślne</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <aside class="rail">
+      <div class="nav" id="nav"></div>
+      <div class="foot">Zmiany zapisują się automatycznie i są wspólne dla wszystkich kierunków strony.<br/><br/>Lemako MEBLE Design</div>
+    </aside>
+    <div class="content"><div class="maxw" id="view"></div></div>
+  </div>
+</div>
+<div class="toast" id="toast">Zapisano</div>
+
+<script src="lemako-core.js"></script>
+<script>
+(function(){
+  var C = Lemako.getContent();
+  var cats = Lemako.CATEGORIES;
+  var editLang = "pl";
+  var tab = "teksty";
+  var toastT;
+
+  var ICONS = {
+    teksty:'M4 6h16M4 12h16M4 18h10', uslugi:'M4 7l8-4 8 4-8 4-8-4z M4 7v6l8 4 8-4V7',
+    realizacje:'M3 5h18v14H3z M3 15l5-5 4 4 3-3 5 5', blog:'M5 4h11l3 3v13H5z M16 4v3h3',
+    kontakt:'M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z',
+    plus:'M12 5v14M5 12h14', trash:'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13',
+    save:'M5 13l4 4L19 7'
+  };
+  function svg(d,s){return '<svg class="ic" width="'+(s||18)+'" height="'+(s||18)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="'+d+'"/></svg>';}
+
+  var TABS = [["teksty","Teksty"],["uslugi","Usługi"],["realizacje","Realizacje"],["blog","Blog"],["kontakt","Kontakt"]];
+
+  function save(){ Lemako.saveContent(C); toast(); }
+  function toast(msg){
+    var t=document.getElementById("toast");
+    t.textContent = msg||"Zapisano"; t.classList.add("show");
+    clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("show");},1300);
+  }
+  function esc(s){return (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
+
+  // generic localized field setter
+  function L(obj,key){ return (obj[key] && typeof obj[key]==="object") ? (obj[key][editLang]||"") : (obj[key]||""); }
+
+  function renderNav(){
+    document.getElementById("nav").innerHTML = TABS.map(function(t){
+      return '<button data-tab="'+t[0]+'" class="'+(tab===t[0]?"on":"")+'">'+svg(ICONS[t[0]])+t[1]+'</button>';
+    }).join("");
+    document.querySelectorAll("#nav button").forEach(function(b){
+      b.addEventListener("click",function(){ tab=b.getAttribute("data-tab"); renderNav(); renderView(); });
+    });
+  }
+
+  function field(label,val,oninput,opts){
+    opts=opts||{};
+    var id="f"+Math.random().toString(36).slice(2);
+    var ctrl = opts.textarea
+      ? '<textarea id="'+id+'">'+esc(val)+'</textarea>'
+      : '<input id="'+id+'" type="'+(opts.type||"text")+'" value="'+esc(val)+'" />';
+    var wrap=document.createElement("div"); wrap.className="field";
+    wrap.innerHTML='<label>'+esc(label)+'</label>'+ctrl+(opts.hint?'<div class="hint">'+esc(opts.hint)+'</div>':'');
+    wrap.querySelector(opts.textarea?"textarea":"input").addEventListener("input",function(e){ oninput(e.target.value); });
+    return wrap;
+  }
+
+  function renderView(){
+    var v=document.getElementById("view"); v.innerHTML="";
+    var head=document.createElement("div"); head.className="head";
+    var titles={teksty:["Teksty strony","Hero oraz sekcja „O pracowni”."],uslugi:["Usługi","Lista zakresu usług."],
+      realizacje:["Realizacje","Portfolio — kafelki na stronie."],blog:["Blog","Wpisy bloga (widok pojedynczego wpisu)."],
+      kontakt:["Kontakt","Dane kontaktowe i social media."]};
+    head.innerHTML='<h1>'+titles[tab][0]+'</h1><p>'+titles[tab][1]+'</p>';
+    v.appendChild(head);
+
+    if(tab==="teksty") viewTeksty(v);
+    else if(tab==="uslugi") viewList(v,"services",{title:"Usługa",fields:[["title","Nazwa"],["desc","Opis"]],make:function(){return {id:"s"+Date.now(),title:{pl:"Nowa usługa",en:"New service"},desc:{pl:"",en:""}};}});
+    else if(tab==="realizacje") viewProjects(v);
+    else if(tab==="blog") viewBlog(v);
+    else if(tab==="kontakt") viewKontakt(v);
+  }
+
+  function viewTeksty(v){
+    var s1=document.createElement("div"); s1.className="section-label"; s1.textContent="Sekcja Hero"; v.appendChild(s1);
+    v.appendChild(field("Nadtytuł",L(C.hero,"eyebrow"),function(x){C.hero.eyebrow[editLang]=x;save();}));
+    v.appendChild(field("Nagłówek główny",L(C.hero,"title"),function(x){C.hero.title[editLang]=x;save();},{textarea:true}));
+    v.appendChild(field("Opis",L(C.hero,"subtitle"),function(x){C.hero.subtitle[editLang]=x;save();},{textarea:true}));
+    var s2=document.createElement("div"); s2.className="section-label"; s2.textContent="Sekcja O pracowni"; v.appendChild(s2);
+    v.appendChild(field("Tytuł",L(C.about,"title"),function(x){C.about.title[editLang]=x;save();}));
+    v.appendChild(field("Treść (pusta linia = nowy akapit)",L(C.about,"body"),function(x){C.about.body[editLang]=x;save();},{textarea:true}));
+    v.appendChild(field("Podpis",L(C.about,"signature"),function(x){C.about.signature[editLang]=x;save();}));
+    var s3=document.createElement("div"); s3.className="section-label"; s3.textContent="Liczby (statystyki)"; v.appendChild(s3);
+    C.stats.forEach(function(st,i){
+      var card=document.createElement("div"); card.className="card";
+      var r=document.createElement("div"); r.className="row2"; card.appendChild(r);
+      r.appendChild(field("Wartość",st.v,function(x){C.stats[i].v=x;save();}));
+      r.appendChild(field("Opis",L(st,"l"),function(x){C.stats[i].l[editLang]=x;save();}));
+      v.appendChild(card);
+    });
+  }
+
+  function viewList(v,key,cfg){
+    C[key].forEach(function(it,i){
+      var card=document.createElement("div"); card.className="card";
+      var ch=document.createElement("div"); ch.className="ch";
+      ch.innerHTML='<span class="n">'+esc(L(it,"title")||cfg.title)+'</span>';
+      var del=document.createElement("button"); del.className="iconbtn danger"; del.innerHTML=svg(ICONS.trash,15);
+      del.addEventListener("click",function(){ C[key].splice(i,1); save("Usunięto"); renderView(); });
+      ch.appendChild(del); card.appendChild(ch);
+      cfg.fields.forEach(function(f){
+        card.appendChild(field(f[1]+" ("+editLang.toUpperCase()+")",L(it,f[0]),function(x){ it[f[0]][editLang]=x; save();
+          if(f[0]==="title") ch.querySelector(".n").textContent=x||cfg.title; }));
+      });
+      v.appendChild(card);
+    });
+    var add=document.createElement("button"); add.className="add"; add.innerHTML=svg(ICONS.plus,15)+"Dodaj";
+    add.addEventListener("click",function(){ C[key].push(cfg.make()); save("Dodano"); renderView(); });
+    v.appendChild(add);
+  }
+
+  function catOptions(sel){ return cats.map(function(c){return '<option value="'+c.id+'"'+(c.id===sel?' selected':'')+'>'+c.pl+'</option>';}).join(""); }
+
+  function viewProjects(v){
+    C.projects.forEach(function(it,i){
+      var card=document.createElement("div"); card.className="card";
+      var ch=document.createElement("div"); ch.className="ch";
+      ch.innerHTML='<span class="n">'+esc(L(it,"title")||"Realizacja")+'</span>';
+      var del=document.createElement("button"); del.className="iconbtn danger"; del.innerHTML=svg(ICONS.trash,15);
+      del.addEventListener("click",function(){ C.projects.splice(i,1); save("Usunięto"); renderView(); });
+      ch.appendChild(del); card.appendChild(ch);
+      card.appendChild(field("Tytuł ("+editLang.toUpperCase()+")",L(it,"title"),function(x){it.title[editLang]=x;save();ch.querySelector(".n").textContent=x||"Realizacja";}));
+      var cf=document.createElement("div"); cf.className="field";
+      cf.innerHTML='<label>Kategoria</label><select>'+catOptions(it.category)+'</select>';
+      cf.querySelector("select").addEventListener("change",function(e){it.category=e.target.value;save();});
+      card.appendChild(cf);
+      card.appendChild(field("Opis ("+editLang.toUpperCase()+")",L(it,"desc"),function(x){it.desc[editLang]=x;save();},{textarea:true}));
+      var ph=document.createElement("div"); ph.className="field"; ph.innerHTML='<div class="hint">Zdjęcie: w wersji produkcyjnej przeciągniesz tu plik (teraz placeholder).</div>';
+      card.appendChild(ph);
+      v.appendChild(card);
+    });
+    var add=document.createElement("button"); add.className="add"; add.innerHTML=svg(ICONS.plus,15)+"Dodaj realizację";
+    add.addEventListener("click",function(){ C.projects.unshift({id:"p"+Date.now(),category:"szafy",title:{pl:"Nowa realizacja",en:"New project"},desc:{pl:"",en:""}}); save("Dodano"); renderView(); });
+    v.appendChild(add);
+  }
+
+  function viewBlog(v){
+    C.blog.forEach(function(it,i){
+      var card=document.createElement("div"); card.className="card";
+      var ch=document.createElement("div"); ch.className="ch";
+      ch.innerHTML='<span class="n">'+esc(L(it,"title")||"Wpis")+'</span>'+(i===0?'<span class="badge">na stronie</span>':'');
+      var del=document.createElement("button"); del.className="iconbtn danger"; del.innerHTML=svg(ICONS.trash,15);
+      del.addEventListener("click",function(){ C.blog.splice(i,1); save("Usunięto"); renderView(); });
+      ch.appendChild(del); card.appendChild(ch);
+      var r=document.createElement("div"); r.className="row2"; card.appendChild(r);
+      r.appendChild(field("Kategoria ("+editLang.toUpperCase()+")",L(it,"category"),function(x){it.category[editLang]=x;save();}));
+      r.appendChild(field("Data",it.date,function(x){it.date=x;save();},{type:"date"}));
+      card.appendChild(field("Tytuł ("+editLang.toUpperCase()+")",L(it,"title"),function(x){it.title[editLang]=x;save();ch.querySelector(".n").textContent=x||"Wpis";}));
+      card.appendChild(field("Zajawka ("+editLang.toUpperCase()+")",L(it,"excerpt"),function(x){it.excerpt[editLang]=x;save();},{textarea:true}));
+      card.appendChild(field("Treść ("+editLang.toUpperCase()+", pusta linia = akapit)",L(it,"body"),function(x){it.body[editLang]=x;save();},{textarea:true,hint:"Pierwszy wpis na liście jest pokazywany na stronie."}));
+      v.appendChild(card);
+    });
+    var add=document.createElement("button"); add.className="add"; add.innerHTML=svg(ICONS.plus,15)+"Dodaj wpis";
+    add.addEventListener("click",function(){ C.blog.unshift({id:"b"+Date.now(),date:new Date().toISOString().slice(0,10),category:{pl:"Aktualności",en:"News"},title:{pl:"Nowy wpis",en:"New post"},excerpt:{pl:"",en:""},body:{pl:"",en:""}}); save("Dodano"); renderView(); });
+    v.appendChild(add);
+  }
+
+  function viewKontakt(v){
+    var r=document.createElement("div"); r.className="row2"; v.appendChild(r);
+    r.appendChild(field("Telefon",C.contact.phone,function(x){C.contact.phone=x;save();}));
+    r.appendChild(field("E-mail",C.contact.email,function(x){C.contact.email=x;save();}));
+    v.appendChild(field("Region ("+editLang.toUpperCase()+")",L(C.contact,"city"),function(x){C.contact.city[editLang]=x;save();}));
+    v.appendChild(field("Godziny ("+editLang.toUpperCase()+")",L(C.contact,"hours"),function(x){C.contact.hours[editLang]=x;save();}));
+    var s=document.createElement("div"); s.className="section-label"; s.textContent="Social media"; v.appendChild(s);
+    v.appendChild(field("Instagram (nazwa użytkownika)",C.contact.instagram,function(x){C.contact.instagram=x;save();}));
+    v.appendChild(field("Facebook (nazwa strony)",C.contact.facebook,function(x){C.contact.facebook=x;save();}));
+    v.appendChild(field("TikTok (nazwa użytkownika)",C.contact.tiktok,function(x){C.contact.tiktok=x;save();}));
+  }
+
+  // editLang toggle
+  document.querySelectorAll("#editLang button").forEach(function(b){
+    b.addEventListener("click",function(){
+      editLang=b.getAttribute("data-l");
+      document.querySelectorAll("#editLang button").forEach(function(x){x.classList.toggle("on",x===b);});
+      renderView();
+    });
+  });
+  // open preview
+  document.getElementById("openSel").addEventListener("change",function(e){ if(e.target.value){ window.open(e.target.value,"_blank"); e.target.value=""; } });
+  // reset
+  document.getElementById("resetBtn").addEventListener("click",function(){
+    if(confirm("Przywrócić domyślną treść? Twoje zmiany zostaną usunięte.")){ Lemako.resetContent(); C=Lemako.getContent(); renderView(); toast("Przywrócono domyślne"); }
+  });
+
+  renderNav(); renderView();
+})();
+</script>
+</body>
+</html>

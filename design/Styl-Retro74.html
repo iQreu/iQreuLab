@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl" data-default-mode="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lemako — Retro '74</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="skin-base.css" />
+<style>
+:root,[data-theme="light"]{
+  --bg:#f3ead7; --bg-2:#ece0c8; --surface:#fbf5e8; --text:#594a3d; --head:#2c211a; --muted:#8a7d6a;
+  --line:rgba(44,33,26,.18); --accent:#bf552c; --accent-2:#a3461f; --on-accent:#fbf5e8; --ph:#e6d8bf;
+  --olive:#6d783b; --mustard:#d79a3a;
+  --font-sans:"Hanken Grotesk",system-ui,sans-serif; --font-display:"DM Serif Display",Georgia,serif;
+}
+[data-theme="dark"]{
+  --bg:#241a12; --bg-2:#2c2017; --surface:#30241a; --text:#d8c9b4; --head:#f5ecdb; --muted:#a3937c;
+  --line:rgba(230,210,180,.18); --accent:#df7a4a; --accent-2:#e89368; --on-accent:#241a12; --ph:#33271c;
+  --olive:#8a984f; --mustard:#e0aa50;
+}
+body{font-weight:450;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:40px;font-size:15px;font-weight:700;transition:.3s;border:2px solid var(--head);color:var(--head);white-space:nowrap;}
+.btn-fill{background:var(--accent);border-color:var(--accent);color:var(--on-accent);}
+.btn-fill:hover{background:var(--accent-2);border-color:var(--accent-2);}
+.btn-out:hover{background:var(--head);color:var(--bg);}
+.arch{border-radius:240px 240px 16px 16px;}
+.hd{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:2px solid var(--head);}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px;}
+.hd-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.hd .chrome{position:static;top:auto;right:auto;backdrop-filter:none;}
+.hd img{height:36px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-size:15px;font-weight:600;color:var(--head);}
+.nav a:hover{color:var(--accent);}
+.tag{font-size:13px;font-weight:700;border:2px solid var(--head);border-radius:30px;padding:8px 16px;white-space:nowrap;color:var(--head);}
+
+.hero{padding:64px 0 84px;}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+.hero h1{font-family:var(--font-display);font-size:clamp(38px,4.8vw,66px);line-height:1.16;color:var(--head);margin:18px 0 0;}
+.hero p{font-size:20px;max-width:46ch;margin-top:32px;color:var(--text);}
+.hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+.hero-vis{position:relative;}
+.hero-vis .ph{aspect-ratio:3/3.6;}
+.badge{position:absolute;left:-30px;bottom:34px;width:124px;height:124px;border-radius:50%;background:var(--olive);color:var(--on-accent);display:grid;place-items:center;text-align:center;transform:rotate(-12deg);}
+.badge .b1{font-family:var(--font-display);font-size:30px;line-height:1;}
+.badge .b2{font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-top:5px;font-weight:700;}
+.dots{position:absolute;right:-10px;top:-10px;width:92px;height:92px;background-image:radial-gradient(var(--mustard) 28%,transparent 30%);background-size:20px 20px;}
+.marquee{margin-top:60px;border-top:2px solid var(--head);border-bottom:2px solid var(--head);padding:14px 0;overflow:hidden;white-space:nowrap;}
+.marquee span{font-family:var(--font-display);font-size:24px;color:var(--head);margin:0 24px;}
+.marquee b{color:var(--accent);}
+
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:46px;}
+.sec-head h2{font-family:var(--font-display);font-size:clamp(32px,4.6vw,56px);color:var(--head);margin-top:12px;}
+.coll{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.coll .it .ph{aspect-ratio:3/3.5;border-radius:160px 160px 12px 12px;}
+.coll .it h3{font-family:var(--font-display);font-size:24px;margin-top:14px;color:var(--head);}
+.coll .it p{font-size:14px;color:var(--muted);margin-top:4px;}
+
+.band{background:var(--head);}
+.band .eyebrow{color:var(--mustard);}
+.band .sec-head h2{color:var(--bg);}
+.gal{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:200px;gap:16px;}
+.gal .g{overflow:hidden;border-radius:14px;position:relative;}
+.gal .g .ph{width:100%;height:100%;min-height:0;background:color-mix(in srgb,var(--head) 80%,#000);}
+.gal .g .ph>span{color:color-mix(in srgb,var(--bg) 60%,transparent);}
+.gal .g .cap{position:absolute;left:0;bottom:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(0,0,0,.5));}
+.gal .g .cap h3{font-family:var(--font-display);font-size:18px;color:#fff;}
+.gal .g .cap .c{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mustard);}
+.g1{grid-column:span 4;grid-row:span 2;} .g2{grid-column:span 2;} .g3{grid-column:span 2;} .g4{grid-column:span 3;} .g5{grid-column:span 3;}
+
+.cta{background:var(--accent);color:var(--on-accent);text-align:center;}
+.cta h2{font-family:var(--font-display);font-size:clamp(36px,5vw,64px);max-width:18ch;margin:0 auto;color:var(--on-accent);}
+.cta p{font-size:19px;margin-top:16px;opacity:.92;}
+.cta .row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:32px;}
+.cta .btn{border-color:var(--on-accent);color:var(--on-accent);}
+.cta .btn-fill{background:var(--on-accent);color:var(--accent);}
+.cta .btn-fill:hover{background:#fff;}
+
+.ft{background:var(--head);color:var(--bg);padding:50px 0 36px;}
+.ft-in{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center;}
+.ft img{height:38px;}
+.ft .links{display:flex;gap:24px;flex-wrap:wrap;}
+.ft .links a{font-size:14px;color:color-mix(in srgb,var(--bg) 80%,transparent);}
+.ft .links a:hover{color:var(--mustard);}
+
+@media(max-width:880px){
+  .nav,.tag{display:none;}
+  .hero-grid{grid-template-columns:1fr;gap:40px;}
+  .coll{grid-template-columns:1fr;}
+  .gal{grid-template-columns:repeat(2,1fr);} .g1,.g2,.g3,.g4,.g5{grid-column:span 2;grid-row:span 1;}
+}
+</style>
+</head>
+<body>
+<header class="hd"><div class="wrap hd-in">
+  <img data-logo alt="Lemako Meble Design" />
+  <nav class="nav">
+    <a href="#scope" data-i18n="nav.collections">Zakres</a>
+    <a href="#work" data-i18n="nav.work">Realizacje</a>
+    <a href="#journal" data-i18n="nav.journal">Blog</a>
+    <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+  </nav>
+  <div class="hd-right">
+    <div class="chrome">
+      <div class="lang"><button data-set-lang="pl">PL</button><button data-set-lang="en">EN</button></div>
+      <button class="mode" data-toggle-mode><span class="ic"></span><span data-mode-label></span></button>
+    </div>
+    <a href="#contact" data-href-tel class="tag" data-bind="contact.phone">+48 600 000 000</a>
+  </div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow" data-bind="hero.eyebrow">Stolarnia na wymiar</span>
+      <h1 data-bind="hero.title">Meble z charakterem</h1>
+      <p data-bind="hero.subtitle">Ciepłe drewno i forma, która się nie nudzi.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-fill" data-i18n="cta.project">Zamów projekt</a>
+        <a href="#work" class="btn btn-out" data-i18n="cta.work">Zobacz realizacje</a>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <span class="dots"></span>
+      <div class="ph arch"><span>zdjęcie — realizacja pionowa</span></div>
+      <div class="badge"><div><div class="b1">100%</div><div class="b2">na wymiar</div></div></div>
+    </div>
+  </div>
+  <div class="marquee">
+    <span>Szafy</span><span><b>•</b></span><span>Kuchnie</span><span><b>•</b></span><span>Garderoby</span><span><b>•</b></span><span>Przedpokoje</span><span><b>•</b></span><span>Zabudowy</span><span><b>•</b></span><span>Łazienki</span><span><b>•</b></span><span>Szafy</span><span><b>•</b></span><span>Kuchnie</span>
+  </div>
+</div></section>
+
+<section class="sec" id="scope"><div class="wrap">
+  <div class="sec-head">
+    <div><span class="eyebrow" data-i18n="head.scope">Co tworzymy</span><h2 data-i18n="head.scopeTitle">Kolekcje na wymiar</h2></div>
+  </div>
+  <div class="coll" data-list="services" data-limit="6">
+    <template><div class="it" data-list-item>
+      <div class="ph"><span data-bind="title">usługa</span></div>
+      <h3 data-bind="title"></h3>
+      <p data-bind="desc"></p>
+    </div></template>
+  </div>
+</div></section>
+
+<section class="sec band" id="work"><div class="wrap">
+  <div class="sec-head"><div><span class="eyebrow" data-i18n="head.work">Z naszej pracowni</span><h2 data-i18n="head.workTitle">Wybrane realizacje</h2></div></div>
+  <div class="gal" data-list="projects" data-limit="5">
+    <template><div class="g" data-list-item>
+      <div class="ph"><span data-ph="cat">realizacja</span></div>
+      <div class="cap"><div class="c" data-cat="category"></div><h3 data-bind="title"></h3></div>
+    </div></template>
+  </div>
+</div></section>
+
+<section class="sec post" id="journal"><div class="post-wrap">
+  <div class="sec-head" style="margin-bottom:0;justify-content:center;"><span class="eyebrow" data-i18n="head.journal">Blog</span></div>
+  <div class="head">
+    <span class="cat" data-bind="blog.0.category">Poradnik</span>
+    <h1 class="ttl" data-bind="blog.0.title">Tytuł wpisu</h1>
+    <div class="meta"><span data-bind-date="blog.0.date"></span> · Lemako</div>
+  </div>
+  <div class="cover ph"><span>zdjęcie główne wpisu</span></div>
+  <div class="body" data-bind-html="blog.0.body"></div>
+  <div class="more"><a href="#journal" data-i18n="head.journalTitle">Z bloga pracowni</a><div class="other"><a href="#contact" data-i18n="head.readMore">Czytaj wpis</a></div></div>
+</div></section>
+
+<section class="sec cta" id="contact"><div class="wrap">
+  <span class="eyebrow" style="color:var(--on-accent);display:inline-block;" data-i18n="head.contact">Porozmawiajmy</span>
+  <h2 class="display" style="margin-top:14px;" data-bind="about.title">Masz pomysł? Zróbmy z niego mebel.</h2>
+  <p data-bind="about.signature"></p>
+  <div class="row">
+    <a href="#" data-href-tel class="btn btn-fill" data-bind="contact.phone">+48 600 000 000</a>
+    <a href="#" data-href-mail class="btn btn-out" data-bind="contact.email">kontakt@lemako.pl</a>
+  </div>
+</div></section>
+
+<footer class="ft"><div class="wrap ft-in">
+  <img data-logo data-src-dark="assets/logo-cream.png" data-src-light="assets/logo-cream.png" alt="Lemako" />
+  <nav class="links">
+    <a href="#scope" data-i18n="nav.collections">Zakres</a>
+    <a href="#work" data-i18n="nav.work">Realizacje</a>
+    <a href="#journal" data-i18n="nav.journal">Blog</a>
+    <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+    <a data-social="instagram" href="#">Instagram</a>
+    <a data-social="facebook" href="#">Facebook</a>
+  </nav>
+</div></footer>
+
+<script src="lemako-core.js"></script>
+</body>
+</html>

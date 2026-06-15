@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl" data-default-mode="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lemako MEBLE Design — meble na wymiar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="skin-base.css" />
+<style>
+:root,[data-theme="dark"]{
+  --bg:#15120d; --bg-2:#1b1712; --surface:#1e1a14; --text:#ece5d8; --head:#f6f1e7; --muted:#a99f8d;
+  --line:rgba(200,168,104,.20); --accent:#c8a868; --accent-2:#e0c692; --on-accent:#1a140a; --ph:#221d16;
+  --font-sans:"Hanken Grotesk",system-ui,sans-serif; --font-display:"Cormorant Garamond",Georgia,serif;
+}
+[data-theme="light"]{
+  --bg:#f4efe3; --bg-2:#ece4d2; --surface:#fbf7ec; --text:#403a2e; --head:#1c1812; --muted:#6f6757;
+  --line:rgba(120,92,38,.22); --accent:#9c7d34; --accent-2:#b8954a; --on-accent:#fbf7ec; --ph:#e4dcc9;
+}
+body{font-weight:350;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:.3s;border:1px solid var(--accent);border-radius:2px;white-space:nowrap;}
+.btn-fill{background:var(--accent);color:var(--on-accent);}
+.btn-fill:hover{background:var(--accent-2);border-color:var(--accent-2);}
+.btn-out{color:var(--head);}
+.btn-out:hover{background:var(--accent);color:var(--on-accent);}
+
+.hd{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:90px;gap:24px;}
+.brand{display:flex;flex-direction:column;line-height:1;}
+.brand .n{font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--head);letter-spacing:.02em;}
+.brand .s{font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-top:4px;}
+.nav{display:flex;gap:32px;}
+.nav a{font-size:14px;color:var(--muted);}
+.nav a:hover{color:var(--accent);}
+.hd-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.hd .chrome{position:static;top:auto;right:auto;backdrop-filter:none;}
+
+.hero{position:relative;padding:0;overflow:hidden;border-bottom:1px solid var(--line);}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg .ph{position:absolute;inset:0;min-height:0;}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 8%,color-mix(in srgb,var(--bg) 64%,transparent) 52%,color-mix(in srgb,var(--bg) 24%,transparent) 100%),linear-gradient(to top,var(--bg) 3%,transparent 46%);}
+.hero-in{position:relative;z-index:2;padding:110px 0 90px;max-width:760px;}
+.hero .kick{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+.hero h1{font-family:var(--font-display);font-weight:500;font-size:clamp(46px,6vw,86px);line-height:1.02;color:var(--head);margin-top:22px;letter-spacing:-.01em;}
+.hero p{color:var(--muted);font-size:20px;max-width:48ch;margin-top:26px;}
+.hero .row{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+.stats{display:flex;gap:0;margin-top:64px;border-top:1px solid var(--line);max-width:620px;}
+.stats .st{flex:1;padding:24px 0;border-right:1px solid var(--line);}
+.stats .st:last-child{border-right:0;}
+.stats .v{font-family:var(--font-display);font-size:40px;color:var(--accent);line-height:1;}
+.stats .l{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+
+.sec-head{max-width:680px;margin-bottom:54px;}
+.sec-head.ctr{margin-left:auto;margin-right:auto;text-align:center;}
+.sec-head h2{font-family:var(--font-display);font-size:clamp(34px,4.4vw,56px);color:var(--head);margin-top:12px;}
+.sec-head p{color:var(--muted);margin-top:14px;font-size:18px;}
+
+.scope{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;}
+.scope .it{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;padding:28px 0;border-top:1px solid var(--line);}
+.scope .n{font-family:var(--font-display);font-size:22px;color:var(--accent);min-width:34px;}
+.scope h3{font-family:var(--font-display);font-size:26px;color:var(--head);}
+.scope p{color:var(--muted);font-size:15px;margin-top:4px;}
+
+.work{background:var(--bg-2);}
+.gal{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:210px;gap:18px;}
+.gal .g{overflow:hidden;position:relative;border:1px solid var(--line);border-radius:2px;}
+.gal .g .ph{width:100%;height:100%;min-height:0;}
+.gal .g .cap{position:absolute;inset:auto 0 0 0;padding:18px;background:linear-gradient(transparent,rgba(12,9,5,.8));}
+.gal .g .cap .c{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-2);}
+.gal .g .cap h3{font-family:var(--font-display);font-size:21px;color:#f6f1e7;}
+.g1{grid-column:span 4;grid-row:span 2;} .g2{grid-column:span 2;} .g3{grid-column:span 2;}
+.g4{grid-column:span 2;} .g5{grid-column:span 2;} .g6{grid-column:span 2;}
+
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.contact h2{font-family:var(--font-display);font-size:clamp(34px,4.6vw,58px);color:var(--head);line-height:1.04;}
+.contact p{color:var(--muted);margin-top:16px;font-size:18px;max-width:40ch;}
+.cbox{border:1px solid var(--line);padding:38px;background:var(--surface);border-radius:2px;}
+.cbox .row{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);gap:16px;}
+.cbox .row:last-of-type{border-bottom:0;}
+.cbox .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.cbox .val{color:var(--head);font-size:17px;}
+.cbox .val:hover{color:var(--accent);}
+.cbox .btn{margin-top:22px;width:100%;justify-content:center;}
+
+.ft{border-top:1px solid var(--line);padding:50px 0;background:var(--bg-2);}
+.ft-in{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.ft .links{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;letter-spacing:.04em;color:var(--muted);}
+.ft .links a:hover{color:var(--accent);}
+
+@media(max-width:880px){
+  .nav{display:none;}
+  .hero-in{max-width:none;padding:80px 0 64px;}
+  .scope{grid-template-columns:1fr;}
+  .gal{grid-template-columns:repeat(2,1fr);} .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 2;grid-row:span 1;}
+  .contact .grid{grid-template-columns:1fr;gap:36px;}
+}
+</style>
+</head>
+<body>
+<header class="hd"><div class="wrap hd-in">
+  <a href="#top" class="brand"><span class="n">LEMAKO</span><span class="s">Meble Design</span></a>
+  <nav class="nav">
+    <a href="#scope" data-i18n="nav.collections">Zakres</a>
+    <a href="#work" data-i18n="nav.work">Realizacje</a>
+    <a href="#journal" data-i18n="nav.journal">Blog</a>
+    <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+  </nav>
+  <div class="hd-right">
+    <div class="chrome">
+      <div class="lang"><button data-set-lang="pl">PL</button><button data-set-lang="en">EN</button></div>
+      <button class="mode" data-toggle-mode><span class="ic"></span><span data-mode-label></span></button>
+    </div>
+    <a href="#contact" class="btn btn-out" data-i18n="cta.quote">Bezpłatna wycena</a>
+  </div>
+</div></header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"><div class="ph"><span>zdjęcie główne — realizacja w kadrze poziomym</span></div></div>
+  <div class="wrap"><div class="hero-in">
+    <span class="kick" data-bind="hero.eyebrow">Stolarnia mebli na wymiar</span>
+    <h1 data-bind="hero.title">Meble dopasowane do Twojej przestrzeni</h1>
+    <p data-bind="hero.subtitle">Projektujemy i wykonujemy meble na wymiar.</p>
+    <div class="row">
+      <a href="#work" class="btn btn-fill" data-i18n="cta.work">Zobacz realizacje</a>
+      <a href="#contact" class="btn btn-out" data-i18n="cta.quote">Bezpłatna wycena</a>
+    </div>
+    <div class="stats" data-list="stats">
+      <template><div class="st" data-list-item><div class="v" data-bind="v"></div><div class="l" data-bind="l"></div></div></template>
+    </div>
+  </div></div>
+</section>
+
+<section class="sec" id="scope"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow" data-i18n="head.scope">Co tworzymy</span><h2 data-i18n="head.scopeTitle">Zakres na wymiar</h2></div>
+  <div class="scope" data-list="services" data-limit="6">
+    <template><div class="it" data-list-item>
+      <div class="n" data-bind="#num">01</div>
+      <div><h3 data-bind="title"></h3><p data-bind="desc"></p></div>
+    </div></template>
+  </div>
+</div></section>
+
+<section class="sec work" id="work"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow" data-i18n="head.work">Z naszej pracowni</span><h2 data-i18n="head.workTitle">Wybrane realizacje</h2></div>
+  <div class="gal" data-list="projects" data-limit="6">
+    <template><div class="g" data-list-item>
+      <div class="ph"><span data-ph="cat">realizacja</span></div>
+      <div class="cap"><div class="c" data-cat="category"></div><h3 data-bind="title"></h3></div>
+    </div></template>
+  </div>
+</div></section>
+
+<section class="sec post" id="journal"><div class="post-wrap">
+  <div class="sec-head ctr" style="margin-bottom:0;"><span class="eyebrow" data-i18n="head.journal">Blog</span></div>
+  <div class="head">
+    <span class="cat" data-bind="blog.0.category">Poradnik</span>
+    <h1 class="ttl" data-bind="blog.0.title">Tytuł wpisu</h1>
+    <div class="meta"><span data-bind-date="blog.0.date"></span> · Lemako</div>
+  </div>
+  <div class="cover ph"><span>zdjęcie główne wpisu</span></div>
+  <div class="body" data-bind-html="blog.0.body"></div>
+  <div class="more"><a href="#journal" data-i18n="head.journalTitle">Z bloga pracowni</a><div class="other"><a href="#contact" data-i18n="head.readMore">Czytaj wpis</a></div></div>
+</div></section>
+
+<section class="sec contact" id="contact"><div class="wrap">
+  <div class="grid">
+    <div>
+      <span class="eyebrow" data-i18n="head.contact">Porozmawiajmy</span>
+      <h2 class="display" style="margin-top:14px;" data-bind="about.title">Pracownia, w której liczy się detal</h2>
+      <p data-bind="about.signature"></p>
+    </div>
+    <div class="cbox">
+      <div class="row"><span class="k" data-i18n="label.phone">Telefon</span><a class="val" data-href-tel data-bind="contact.phone">+48 600 000 000</a></div>
+      <div class="row"><span class="k" data-i18n="label.email">E-mail</span><a class="val" data-href-mail data-bind="contact.email">kontakt@lemako.pl</a></div>
+      <div class="row"><span class="k" data-i18n="label.city">Region</span><span class="val" data-bind="contact.city"></span></div>
+      <div class="row"><span class="k" data-i18n="label.hours">Godziny</span><span class="val" data-bind="contact.hours"></span></div>
+      <a href="#" data-href-mail class="btn btn-fill" data-i18n="cta.send">Wyślij zapytanie</a>
+    </div>
+  </div>
+</div></section>
+
+<footer class="ft"><div class="wrap ft-in">
+  <div class="brand"><span class="n" style="font-size:22px;">LEMAKO</span><span class="s">Meble Design</span></div>
+  <nav class="links">
+    <a href="#scope" data-i18n="nav.collections">Zakres</a>
+    <a href="#work" data-i18n="nav.work">Realizacje</a>
+    <a href="#journal" data-i18n="nav.journal">Blog</a>
+    <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+    <a data-social="instagram" href="#">Instagram</a>
+    <a data-social="facebook" href="#">Facebook</a>
+  </nav>
+</div></footer>
+
+<script src="lemako-core.js"></script>
+</body>
+</html>

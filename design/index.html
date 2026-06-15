@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lemako — kierunki wizualne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{ --bg:#15120d; --bg2:#1d1812; --line:rgba(220,200,170,.14); --line2:rgba(220,200,170,.32); --text:#e9e0d2; --head:#f5efe3; --muted:#9c9080; --gold:#c8a868; --shade:#0e0b09;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Hanken Grotesk",system-ui,sans-serif; }
+html[data-theme="light"]{ --bg:#efe7d8; --bg2:#f7f1e6; --line:rgba(40,30,16,.14); --line2:rgba(40,30,16,.3); --text:#352f24; --head:#1f1810; --muted:#6e6353; --gold:#9a7430; --shade:#e3d8c2; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-weight:350;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px;}
+.chrome{position:fixed;top:16px;right:18px;z-index:50;display:flex;gap:8px;align-items:center;}
+.chrome .l0{display:flex;border:1px solid var(--line2);border-radius:30px;overflow:hidden;background:var(--bg2);}
+.chrome .mode{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:30px;background:var(--bg2);color:var(--text);padding:8px 15px;font-size:13px;font-weight:600;}
+.chrome .mode:hover{border-color:var(--gold);color:var(--gold);}
+.chrome .mode .ic{width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:inset -4px -4px 0 0 var(--bg2);}
+html[data-theme="light"] .chrome .mode .ic{box-shadow:none;}
+.panel-link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);background:var(--gold);color:#1a140a;border-radius:30px;padding:8px 16px;font-size:13px;font-weight:700;}
+.panel-link:hover{background:transparent;color:var(--gold);}
+
+header.top{padding:50px 0 0;text-align:center;}
+header.top img{height:56px;width:auto;margin:0 auto 28px;}
+.eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+header.top h1{font-family:var(--serif);font-weight:500;font-size:clamp(36px,5vw,62px);line-height:1.04;margin-top:14px;color:var(--head);}
+header.top p{color:var(--muted);max-width:64ch;margin:18px auto 0;font-size:18px;}
+
+.group{margin-top:54px;}
+.group > .lbl{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+.group > .lbl span{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;white-space:nowrap;}
+.group > .lbl::after{content:"";flex:1;height:1px;background:var(--line);}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;}
+.card{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .3s;position:relative;}
+.card:hover{transform:translateY(-6px);border-color:var(--line2);}
+.preview{position:relative;width:100%;aspect-ratio:1265/720;overflow:hidden;background:var(--shade);border-bottom:1px solid var(--line);}
+.preview img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.card .open{position:absolute;top:16px;right:16px;z-index:3;background:rgba(20,16,12,.72);backdrop-filter:blur(6px);color:#fff;font-size:12px;font-weight:600;letter-spacing:.04em;padding:9px 15px;border-radius:30px;border:1px solid rgba(255,255,255,.25);opacity:0;transform:translateY(-6px);transition:.35s;}
+.card:hover .open{opacity:1;transform:none;}
+.meta{padding:22px 24px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;}
+.meta .nm{font-family:var(--serif);font-size:26px;color:var(--head);line-height:1;}
+.meta .ds{color:var(--muted);font-size:14px;margin-top:8px;max-width:36ch;}
+.tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0;max-width:44%;}
+.tag{font-size:11px;letter-spacing:.04em;color:var(--text);border:1px solid var(--line);border-radius:30px;padding:5px 11px;white-space:nowrap;}
+.tag.dot::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:middle;background:var(--c,#c8a868);}
+footer{border-top:1px solid var(--line);padding:34px 0 54px;text-align:center;color:var(--muted);font-size:14px;margin-top:64px;}
+footer a{color:var(--gold);}
+@media(max-width:860px){ .grid{grid-template-columns:1fr;} .meta{flex-direction:column;} .tags{justify-content:flex-start;max-width:100%;} .chrome{position:static;justify-content:center;padding:16px;flex-wrap:wrap;} }
+</style>
+</head>
+<body>
+<div class="chrome">
+  <button class="mode" id="modeBtn"><span class="ic"></span><span id="modeLbl">Tryb jasny</span></button>
+  <a class="panel-link" href="panel.html" target="_blank">⚙ Panel właściciela</a>
+</div>
+
+<header class="top"><div class="wrap">
+  <img id="brandLogo" src="assets/logo-white.png" alt="Lemako Meble Design" />
+  <div class="eyebrow">Kierunki wizualne</div>
+  <h1>Osiem dróg dla strony Lemako</h1>
+  <p>Każdy kierunek ma własny tryb jasny/ciemny, sekcję bloga i wspólną treść z panelu właściciela. Najedź, by zobaczyć podgląd — kliknij, aby otworzyć pełną wersję.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="group">
+    <div class="lbl"><span>Premium</span></div>
+    <div class="grid" id="g-premium"></div>
+  </div>
+  <div class="group">
+    <div class="lbl"><span>Retro / vintage</span></div>
+    <div class="grid" id="g-retro"></div>
+  </div>
+  <div class="group">
+    <div class="lbl"><span>Nowe kierunki</span></div>
+    <div class="grid" id="g-new"></div>
+  </div>
+</div>
+
+<footer><div class="wrap">Powiedz, który kierunek (lub miks) Ci pasuje — dopniemy go i podmienimy placeholdery na realne zdjęcia. · <a href="panel.html" target="_blank">Otwórz panel właściciela</a></div></footer>
+
+<script>
+  var STYLES = {
+    premium: [
+      { f:"Styl-Onyks.html", thumb:"assets/thumb-onyks.jpg", nm:"Onyks Premium", ds:"Ciemny mosiądz, elegancki szeryf. Pełny panel CMS w wersji React.", tags:[["Mosiądz","#c8a868"],["Ciemny",null]] },
+      { f:"Styl-Smaragd.html", thumb:"assets/thumb-smaragd.jpg", nm:"Smaragd", ds:"Szmaragd i złoto, editorial serif. Luksusowy, ciepły, dostojny.", tags:[["Szmaragd","#1f6b52"],["Złoto","#c4a45c"]] },
+      { f:"Styl-Platyna.html", thumb:"assets/thumb-platyna.jpg", nm:"Platyna", ds:"Granat i platyna, Fraunces serif. Nowoczesny luksus, chłodny ton.", tags:[["Granat","#28384f"],["Platyna","#9fb2cb"]] }
+    ],
+    retro: [
+      { f:"Styl-Retro74.html", thumb:"assets/thumb-retro.jpg", nm:"Retro '74", ds:"Ciepłe lata 70.: krem, rdza i oliwka, łuki, ręczny charakter.", tags:[["Rdza","#bf552c"],["Oliwka","#6d783b"]] },
+      { f:"Styl-MidCentury.html", thumb:"assets/thumb-midcentury.jpg", nm:"Mid-century", ds:"Modernizm: turkus i musztarda, czysta geometria, atomic-age.", tags:[["Turkus","#2c6b61"],["Musztarda","#d6a23a"]] },
+      { f:"Styl-Bauhaus.html", thumb:"assets/thumb-bauhaus.jpg", nm:"Bauhaus", ds:"Bryły geometryczne, czerwień–granat–ochra, mocny grotesk.", tags:[["Czerwień","#c5452e"],["Granat","#274c93"]] }
+    ],
+    new: [
+      { f:"Styl-ArtDeco.html", thumb:"assets/thumb-artdeco.jpg", nm:"Art déco", ds:"Geometria, złoto i luksus; symetria i promienie słońca.", tags:[["Złoto","#c7a463"],["Luksus",null]] },
+      { f:"Styl-Industrial.html", thumb:"assets/thumb-industrial.jpg", nm:"Industrial loft", ds:"Beton, metal i stencil; surowa siatka, kondensowana typografia.", tags:[["Amber","#d8772b"],["Beton",null]] },
+      { f:"Styl-Glamour.html", thumb:"assets/thumb-glamour.jpg", nm:"Glamour boutique", ds:"Elegancki kontrast, dużo światła, editorial i szampan.", tags:[["Szampan","#b08463"],["Editorial",null]] },
+      { f:"Styl-Brutalist.html", thumb:"assets/thumb-brutalist.jpg", nm:"Brutalist editorial", ds:"Mocna typografia, widoczna siatka, elektryczny akcent.", tags:[["Elektryk","#3b2bd6"],["Siatka",null]] }
+    ]
+  };
+
+  function card(s){
+    var tags = s.tags.map(function(t){ return '<span class="tag'+(t[1]?' dot':'')+'"'+(t[1]?' style="--c:'+t[1]+'"':'')+'>'+t[0]+'</span>'; }).join("");
+    return '<a class="card" href="'+s.f+'" target="_blank">'
+      + '<span class="open">Otwórz pełną wersję ↗</span>'
+      + '<div class="preview"><img src="'+s.thumb+'" alt="Podgląd — '+s.nm+'" /></div>'
+      + '<div class="meta"><div><div class="nm">'+s.nm+'</div><div class="ds">'+s.ds+'</div></div><div class="tags">'+tags+'</div></div></a>';
+  }
+  document.getElementById("g-premium").innerHTML = STYLES.premium.map(card).join("");
+  document.getElementById("g-retro").innerHTML = STYLES.retro.map(card).join("");
+  document.getElementById("g-new").innerHTML = STYLES.new.map(card).join("");
+
+  // tryb jasny/ciemny galerii
+  (function(){
+    var root=document.documentElement, logo=document.getElementById('brandLogo'),
+        btn=document.getElementById('modeBtn'), lbl=document.getElementById('modeLbl');
+    function apply(m){
+      if(m==='light'){ root.setAttribute('data-theme','light'); logo.src='assets/logo-ink.png'; lbl.textContent='Tryb ciemny'; }
+      else { root.removeAttribute('data-theme'); logo.src='assets/logo-white.png'; lbl.textContent='Tryb jasny'; }
+    }
+    var mode = localStorage.getItem('lemako_gallery_theme') || 'dark';
+    apply(mode);
+    btn.addEventListener('click', function(){ mode=(mode==='light'?'dark':'light'); localStorage.setItem('lemako_gallery_theme', mode); apply(mode); });
+  })();
+</script>
+</body>
+</html>
